@@ -1,6 +1,9 @@
 <script>
+	import Header from "./components/header.svelte";
 	export let name;
 </script>
+
+<Header />
 
 <main>
 	<h1>Hello {name}!</h1>
