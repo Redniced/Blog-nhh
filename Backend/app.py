@@ -4,6 +4,7 @@ from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
+from pymongo.errors import ConnectionFailure 
 
 load_dotenv()  # Load environment variables from .env
 
@@ -15,11 +16,29 @@ mongo_uri = os.getenv("MONGO_URI")
 client = MongoClient(mongo_uri)
 db = client["blognhh"]
 posts_collection = db["posts"]
+print("Mongo URI:", mongo_uri)
+
 
 @app.route("/api/posts", methods=["GET"])
 def get_posts():
     posts = list(posts_collection.find({}, {"_id": 0}))
     return jsonify(posts)
+
+@app.route("/status")
+def status():
+    try:
+        # The ping command is cheap and doesn't require auth beyond connection
+        client.admin.command('ping')
+        return jsonify({
+            "status": "ok",
+            "message": "Connected to MongoDB successfully"
+        })
+    except Exception as e:  
+        return jsonify({
+            "status": "error",
+            "message": f"MongoDB connection failed: {str(e)}"
+        }), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)
