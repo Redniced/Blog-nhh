@@ -1,8 +1,9 @@
+<!-- filepath: c:\Users\sbpau\.vscode\Blog\Frontend\src\components\Header.svelte -->
 <header>
   <h1>My Blog</h1>
   <nav>
-    <a href="/">Home</a>
-    <a href="/login">Login</a>
+    <a href="#/">Home</a>
+    <a href="#/status">Status</a>
   </nav>
   <hr>
 </header>
