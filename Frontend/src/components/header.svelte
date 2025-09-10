@@ -4,6 +4,7 @@
   <nav>
     <a href="#/">Home</a>
     <a href="#/status">Status</a>
+    <a href="#/post">Post</a>
   </nav>
   <hr>
 </header>
