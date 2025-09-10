@@ -39,6 +39,15 @@ def status():
             "message": f"MongoDB connection failed: {str(e)}"
         }), 500
 
+@app.route("/api/blogs/latest")
+def get_latest_blogs():
+    latest = posts_collection.find().sort("created_at", -1).limit(5)
+    return jsonify([{
+        "title": blog["title"],
+        "content": blog["content"],
+        "created_at": blog["created_at"]
+    } for blog in latest])
+
 
 if __name__ == "__main__":
     app.run(debug=True)
