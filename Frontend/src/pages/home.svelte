@@ -22,3 +22,27 @@
 {:else}
   <p>No blogs found.</p>
 {/if}
+
+<style>
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+  }
+  h3 {
+    margin: 0;
+  }
+  p {
+    margin: 0.5rem 0;
+  }
+  small {
+    color: #666;
+  }
+</style>
