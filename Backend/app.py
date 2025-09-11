@@ -8,7 +8,7 @@ from pymongo.errors import ConnectionFailure
 from bson.objectid import ObjectId
 from flask import request
 from datetime import datetime 
-
+ 
 load_dotenv()  # Load environment variables from .env
 
 app = Flask(__name__)
@@ -73,8 +73,8 @@ def create_blog():
         "title": data["title"],
         "content": data["content"],
         "author": data.get("author", "Anonymous"),  # Default if not provided
-        "timestamp": data.get("timestamp", datetime.timestamp()),  # Use current time if not provided
-        "created_at": data.get("created_at", datetime.timestamp())  # Optional, fallback to now
+        "timestamp": data.get("timestamp"),  # Use current time if not provided
+        "created_at": data.get("created_at")  # Optional, fallback to now
     }
 
     # Insert into MongoDB
@@ -87,8 +87,8 @@ def create_blog():
             "_id": str(blog["_id"]),
             "title": blog["title"],
             "author": blog["author"],
-            "timestamp": blog["timestamp"].isoformat(),
-            "created_at": blog["created_at"].isoformat()
+            "timestamp": blog["timestamp"],
+            "created_at": blog["created_at"]
         }
     }), 201
 
